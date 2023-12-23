@@ -11,7 +11,6 @@ class MainApp(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('Мое приложение')
-
         nav_menu = self.menuBar()
         page1_action = QAction('Главная страница', self)
         page1_action.triggered.connect(self.show_page1)
@@ -19,23 +18,18 @@ class MainApp(QMainWindow):
         page2_action.triggered.connect(self.show_page2)
         nav_menu.addAction(page1_action)
         nav_menu.addAction(page2_action)
-
         self.stacked_widget = QStackedWidget()
         self.setCentralWidget(self.stacked_widget)
-
         self.page1 = QWidget()
         label1 = QLabel('На данном мероприятии было все, что есть на мероприятиях для богатых людей: Шведский стол, кофейня, подарки спикеры и толчок. Все это было приятно , спикеры были тоже ничего, но скучные ,пытались все разбавить шутками , но не получилось , но хотя все было информативно')
         self.page1.layout = QVBoxLayout()
         self.page1.layout.addWidget(label1)
-
         logo_label = QLabel()
         pixmap = QPixmap('hz.png')
         logo_label.setPixmap(pixmap)
         self.page1.layout.addWidget(logo_label)
-
         self.page1.setLayout(self.page1.layout)
         self.stacked_widget.addWidget(self.page1)
-
         self.page2 = QWidget()
         label2 = QLabel('Хз , что написать честно и видео ,которое я добавил оно описывает мои эмоции')
         video_widget = QVideoWidget()
@@ -53,15 +47,12 @@ class MainApp(QMainWindow):
         self.page2.layout.addWidget(self.back_button)
         self.page2.setLayout(self.page2.layout)
         self.stacked_widget.addWidget(self.page2)
-
     def show_page1(self):
         self.stacked_widget.setCurrentIndex(0)
         self.back_button.hide()
-
     def show_page2(self):
         self.stacked_widget.setCurrentIndex(1)
         self.back_button.show()
-
     def play_video(self):
         self.video_player.play()
         self.back_button.hide()
